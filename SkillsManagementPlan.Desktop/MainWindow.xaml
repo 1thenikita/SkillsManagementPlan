@@ -19,7 +19,9 @@
                 <MenuItem Header="Open" Click="menuItemActivityOpen"/>
             </MenuItem>
             <MenuItem Header="View"/>
-            <MenuItem Header="Help"/>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="menuAbout"/>
+            </MenuItem>
         </Menu>
         <Frame x:Name="frmMain" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="frmMain_ContentRendered"/>
         <TextBlock x:Name="tbInfo" Grid.Row="3" Text="{Binding Info, StringFormat={}Overall {Days} days | {GeneralTime} general time | {CompetitiveTime} competitive time}"/>

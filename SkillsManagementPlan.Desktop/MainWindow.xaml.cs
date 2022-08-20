@@ -62,5 +62,10 @@ namespace SkillsManagementPlan.Desktop
             if (frmMain.Content is PageActivities) (frmMain.Content as PageActivities).UpdateDatas();
             tbInfo.DataContext = new Info();
         }
+
+        private void menuAbout(object sender, RoutedEventArgs e)
+        {
+            new ModuleWindow(new PageInfo()).ShowDialog();
+        }
     }
 }
