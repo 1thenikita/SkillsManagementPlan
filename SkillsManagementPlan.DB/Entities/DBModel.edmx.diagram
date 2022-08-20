@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dbfca5121ba54cc485311be918f4cb51" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.Activity" Width="1.5" PointX="5.25" PointY="2.75" />
+        <EntityTypeShape EntityType="DBModel.ActivityType" Width="1.5" PointX="3" PointY="12.875" />
+        <EntityTypeShape EntityType="DBModel.Country" Width="1.5" PointX="5.75" PointY="8.625" />
+        <EntityTypeShape EntityType="DBModel.Location" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="DBModel.ParticipantType" Width="1.5" PointX="7.5" PointY="3.5" />
+        <EntityTypeShape EntityType="DBModel.Plan" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="DBModel.ResultType" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="DBModel.Timezone" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="DBModel.Zone" Width="1.5" PointX="8" PointY="8.625" />
+        <AssociationConnector Association="DBModel.FK_Activities_ActivityTypes" />
+        <AssociationConnector Association="DBModel.FK_Activities_Locations" />
+        <AssociationConnector Association="DBModel.FK_Activities_ParticipantTypes" />
+        <AssociationConnector Association="DBModel.FK_Activities_Plans" />
+        <AssociationConnector Association="DBModel.FK_Activities_ResultTypes" />
+        <AssociationConnector Association="DBModel.FK_Zones_Countries" />
+        <AssociationConnector Association="DBModel.FK_Plans_Timezones" />
+        <AssociationConnector Association="DBModel.ParticipantTypesInActivity" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

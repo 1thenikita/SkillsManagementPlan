@@ -1,0 +1,27 @@
+﻿<Window x:Class="SkillsManagementPlan.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SkillsManagementPlan.Desktop"
+        mc:Ignorable="d"
+        Title="Skill Management Planner" Height="450" Width="800" Icon="/Resources/icons/SMPlanner.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Menu x:Name="menuMain">
+            <MenuItem Header="File"/>
+            <MenuItem Header="Home"/>
+            <MenuItem Header="Activity">
+                <MenuItem Header="Open" Click="menuItemActivityOpen"/>
+            </MenuItem>
+            <MenuItem Header="View"/>
+            <MenuItem Header="Help"/>
+        </Menu>
+        <Frame x:Name="frmMain" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="frmMain_ContentRendered"/>
+        <TextBlock x:Name="tbInfo" Grid.Row="3" Text="{Binding Info, StringFormat={}Overall {Days} days | {GeneralTime} general time | {CompetitiveTime} competitive time}"/>
+    </Grid>
+</Window>

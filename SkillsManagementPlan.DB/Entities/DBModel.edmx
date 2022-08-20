@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activities">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DateTimeStart" Type="datetime" Nullable="false" />
+          <Property Name="DateTimeEnd" Type="datetime" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="ResultTypeID" Type="int" Nullable="false" />
+          <Property Name="ResponsibleID" Type="int" Nullable="false" />
+          <Property Name="PlanID" Type="int" Nullable="false" />
+          <Property Name="ActivityTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParticipantTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Icon" Type="varbinary(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Acronym" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParticipantTypesInActivity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+            <PropertyRef Name="ParticipantTypeID" />
+          </Key>
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="ParticipantTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plans">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChampionshipName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompetenceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Expert" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TimezoneID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResultTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Timezones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identify" Type="int" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartOfCounting" Type="bigint" Nullable="false" />
+          <Property Name="GreenwichOffset" Type="bigint" Nullable="false" />
+          <Property Name="SummerTime" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="TimeZoneName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Activities_ActivityTypes">
+          <End Role="ActivityTypes" Type="Self.ActivityTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="ActivityTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_Locations">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_ParticipantTypes">
+          <End Role="ParticipantTypes" Type="Self.ParticipantTypes" Multiplicity="1" />
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParticipantTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="ResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_Plans">
+          <End Role="Plans" Type="Self.Plans" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plans">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_ResultTypes">
+          <End Role="ResultTypes" Type="Self.ResultTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResultTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="ResultTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParticipantTypesInActivity_Activities">
+          <End Role="Activities" Type="Self.Activities" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ParticipantTypesInActivity" Type="Self.ParticipantTypesInActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activities">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ParticipantTypesInActivity">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParticipantTypesInActivity_ParticipantTypes">
+          <End Role="ParticipantTypes" Type="Self.ParticipantTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ParticipantTypesInActivity" Type="Self.ParticipantTypesInActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParticipantTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ParticipantTypesInActivity">
+              <PropertyRef Name="ParticipantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plans_Timezones">
+          <End Role="Timezones" Type="Self.Timezones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Timezones">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Plans">
+              <PropertyRef Name="TimezoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zones_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Zones" Type="Self.Zones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Zones">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DBModelContainer">
+          <EntitySet Name="Activities" EntityType="Self.Activities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityTypes" EntityType="Self.ActivityTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParticipantTypes" EntityType="Self.ParticipantTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParticipantTypesInActivity" EntityType="Self.ParticipantTypesInActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResultTypes" EntityType="Self.ResultTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timezones" EntityType="Self.Timezones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zones" EntityType="Self.Zones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Activities_ActivityTypes" Association="Self.FK_Activities_ActivityTypes">
+            <End Role="ActivityTypes" EntitySet="ActivityTypes" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activities_Locations" Association="Self.FK_Activities_Locations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activities_ParticipantTypes" Association="Self.FK_Activities_ParticipantTypes">
+            <End Role="ParticipantTypes" EntitySet="ParticipantTypes" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activities_Plans" Association="Self.FK_Activities_Plans">
+            <End Role="Plans" EntitySet="Plans" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activities_ResultTypes" Association="Self.FK_Activities_ResultTypes">
+            <End Role="ResultTypes" EntitySet="ResultTypes" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParticipantTypesInActivity_Activities" Association="Self.FK_ParticipantTypesInActivity_Activities">
+            <End Role="Activities" EntitySet="Activities" />
+            <End Role="ParticipantTypesInActivity" EntitySet="ParticipantTypesInActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParticipantTypesInActivity_ParticipantTypes" Association="Self.FK_ParticipantTypesInActivity_ParticipantTypes">
+            <End Role="ParticipantTypes" EntitySet="ParticipantTypes" />
+            <End Role="ParticipantTypesInActivity" EntitySet="ParticipantTypesInActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plans_Timezones" Association="Self.FK_Plans_Timezones">
+            <End Role="Timezones" EntitySet="Timezones" />
+            <End Role="Plans" EntitySet="Plans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zones_Countries" Association="Self.FK_Zones_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Zones" EntitySet="Zones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="DBModel.Activity" />
+          <EntitySet Name="ActivityTypes" EntityType="DBModel.ActivityType" />
+          <EntitySet Name="Countries" EntityType="DBModel.Country" />
+          <EntitySet Name="Locations" EntityType="DBModel.Location" />
+          <EntitySet Name="ParticipantTypes" EntityType="DBModel.ParticipantType" />
+          <EntitySet Name="Plans" EntityType="DBModel.Plan" />
+          <EntitySet Name="ResultTypes" EntityType="DBModel.ResultType" />
+          <EntitySet Name="Timezones" EntityType="DBModel.Timezone" />
+          <EntitySet Name="Zones" EntityType="DBModel.Zone" />
+          <AssociationSet Name="FK_Activities_ActivityTypes" Association="DBModel.FK_Activities_ActivityTypes">
+            <End Role="ActivityType" EntitySet="ActivityTypes" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activities_Locations" Association="DBModel.FK_Activities_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activities_ParticipantTypes" Association="DBModel.FK_Activities_ParticipantTypes">
+            <End Role="ParticipantType" EntitySet="ParticipantTypes" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activities_Plans" Association="DBModel.FK_Activities_Plans">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activities_ResultTypes" Association="DBModel.FK_Activities_ResultTypes">
+            <End Role="ResultType" EntitySet="ResultTypes" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zones_Countries" Association="DBModel.FK_Zones_Countries">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Zone" EntitySet="Zones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plans_Timezones" Association="DBModel.FK_Plans_Timezones">
+            <End Role="Timezone" EntitySet="Timezones" />
+            <End Role="Plan" EntitySet="Plans" />
+          </AssociationSet>
+          <AssociationSet Name="ParticipantTypesInActivity" Association="DBModel.ParticipantTypesInActivity">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="ParticipantType" EntitySet="ParticipantTypes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateTimeStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTimeEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="ResultTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ResponsibleID" Type="Int32" Nullable="false" />
+          <Property Name="PlanID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActivityType" Relationship="DBModel.FK_Activities_ActivityTypes" FromRole="Activity" ToRole="ActivityType" />
+          <NavigationProperty Name="Location" Relationship="DBModel.FK_Activities_Locations" FromRole="Activity" ToRole="Location" />
+          <NavigationProperty Name="ParticipantType" Relationship="DBModel.FK_Activities_ParticipantTypes" FromRole="Activity" ToRole="ParticipantType" />
+          <NavigationProperty Name="Plan" Relationship="DBModel.FK_Activities_Plans" FromRole="Activity" ToRole="Plan" />
+          <NavigationProperty Name="ResultType" Relationship="DBModel.FK_Activities_ResultTypes" FromRole="Activity" ToRole="ResultType" />
+          <NavigationProperty Name="ParticipantTypes" Relationship="DBModel.ParticipantTypesInActivity" FromRole="Activity" ToRole="ParticipantType" />
+        </EntityType>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activities" Relationship="DBModel.FK_Activities_ActivityTypes" FromRole="ActivityType" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zones" Relationship="DBModel.FK_Zones_Countries" FromRole="Country" ToRole="Zone" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activities" Relationship="DBModel.FK_Activities_Locations" FromRole="Location" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="ParticipantType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Acronym" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activities" Relationship="DBModel.FK_Activities_ParticipantTypes" FromRole="ParticipantType" ToRole="Activity" />
+          <NavigationProperty Name="Activities1" Relationship="DBModel.ParticipantTypesInActivity" FromRole="ParticipantType" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChampionshipName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompetenceName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Expert" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TimezoneID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activities" Relationship="DBModel.FK_Activities_Plans" FromRole="Plan" ToRole="Activity" />
+          <NavigationProperty Name="Timezone" Relationship="DBModel.FK_Plans_Timezones" FromRole="Plan" ToRole="Timezone" />
+        </EntityType>
+        <EntityType Name="ResultType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activities" Relationship="DBModel.FK_Activities_ResultTypes" FromRole="ResultType" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Timezone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identify" Type="Int32" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartOfCounting" Type="Int64" Nullable="false" />
+          <Property Name="GreenwichOffset" Type="Int64" Nullable="false" />
+          <Property Name="SummerTime" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Plans" Relationship="DBModel.FK_Plans_Timezones" FromRole="Timezone" ToRole="Plan" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="TimeZoneName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK_Zones_Countries" FromRole="Zone" ToRole="Country" />
+        </EntityType>
+        <Association Name="FK_Activities_ActivityTypes">
+          <End Type="DBModel.ActivityType" Role="ActivityType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_Locations">
+          <End Type="DBModel.Location" Role="Location" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_ParticipantTypes">
+          <End Type="DBModel.ParticipantType" Role="ParticipantType" Multiplicity="1" />
+          <End Type="DBModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParticipantType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_Plans">
+          <End Type="DBModel.Plan" Role="Plan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_ResultTypes">
+          <End Type="DBModel.ResultType" Role="ResultType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResultType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ResultTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zones_Countries">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.Zone" Role="Zone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Zone">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plans_Timezones">
+          <End Type="DBModel.Timezone" Role="Timezone" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.Plan" Role="Plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Timezone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Plan">
+              <PropertyRef Name="TimezoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ParticipantTypesInActivity">
+          <End Type="DBModel.Activity" Role="Activity" Multiplicity="*" />
+          <End Type="DBModel.ParticipantType" Role="ParticipantType" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="DBModel.Activity">
+              <MappingFragment StoreEntitySet="Activities">
+                <ScalarProperty Name="ActivityTypeID" ColumnName="ActivityTypeID" />
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="ResponsibleID" ColumnName="ResponsibleID" />
+                <ScalarProperty Name="ResultTypeID" ColumnName="ResultTypeID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="DateTimeEnd" ColumnName="DateTimeEnd" />
+                <ScalarProperty Name="DateTimeStart" ColumnName="DateTimeStart" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityTypes">
+            <EntityTypeMapping TypeName="DBModel.ActivityType">
+              <MappingFragment StoreEntitySet="ActivityTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="DBModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="DBModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParticipantTypes">
+            <EntityTypeMapping TypeName="DBModel.ParticipantType">
+              <MappingFragment StoreEntitySet="ParticipantTypes">
+                <ScalarProperty Name="Acronym" ColumnName="Acronym" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plans">
+            <EntityTypeMapping TypeName="DBModel.Plan">
+              <MappingFragment StoreEntitySet="Plans">
+                <ScalarProperty Name="TimezoneID" ColumnName="TimezoneID" />
+                <ScalarProperty Name="Expert" ColumnName="Expert" />
+                <ScalarProperty Name="CompetenceName" ColumnName="CompetenceName" />
+                <ScalarProperty Name="ChampionshipName" ColumnName="ChampionshipName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResultTypes">
+            <EntityTypeMapping TypeName="DBModel.ResultType">
+              <MappingFragment StoreEntitySet="ResultTypes">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timezones">
+            <EntityTypeMapping TypeName="DBModel.Timezone">
+              <MappingFragment StoreEntitySet="Timezones">
+                <ScalarProperty Name="SummerTime" ColumnName="SummerTime" />
+                <ScalarProperty Name="GreenwichOffset" ColumnName="GreenwichOffset" />
+                <ScalarProperty Name="StartOfCounting" ColumnName="StartOfCounting" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Identify" ColumnName="Identify" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zones">
+            <EntityTypeMapping TypeName="DBModel.Zone">
+              <MappingFragment StoreEntitySet="Zones">
+                <ScalarProperty Name="TimeZoneName" ColumnName="TimeZoneName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ParticipantTypesInActivity" TypeName="DBModel.ParticipantTypesInActivity" StoreEntitySet="ParticipantTypesInActivity">
+            <EndProperty Name="ParticipantType">
+              <ScalarProperty Name="ID" ColumnName="ParticipantTypeID" />
+            </EndProperty>
+            <EndProperty Name="Activity">
+              <ScalarProperty Name="ID" ColumnName="ActivityID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

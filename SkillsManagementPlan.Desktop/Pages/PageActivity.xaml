@@ -1,0 +1,95 @@
+﻿<Page x:Class="SkillsManagementPlan.Desktop.Pages.PageActivity"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SkillsManagementPlan.Desktop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="500"
+      Title="Add Activity">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Start time" Grid.Row="0" Grid.Column="0"/>
+        <DatePicker x:Name="dpStart" SelectedDate="{Binding DateTimeStart}" Grid.Column="1"/>
+        <Label Content="End time" Grid.Row="1" Grid.Column="0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <DatePicker x:Name="dpEnd" SelectedDate="{Binding DateTimeEnd}"/>
+            <Label Content="Duration"/>
+            <Label Content="Hours:"/>
+            <TextBox x:Name="tbHours" Width="30"/>
+            <Label Content="Minutes:"/>
+            <TextBox x:Name="tbMinutes" Width="30"/>
+        </StackPanel>
+        <Label Content="Activity" Grid.Row="2" Grid.Column="0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+            <ComboBox x:Name="cbActivity" DisplayMemberPath="Name" SelectedItem="{Binding Activity}"/>
+            <Button x:Name="btnCheckActivity" Width="30" Click="btnCheckActivity_Click">
+                <Button.OpacityMask>
+                    <ImageBrush ImageSource="/Resources/icons/app/edit.png"/>
+                </Button.OpacityMask>
+            </Button>
+        </StackPanel>
+        <Label Content="Participants" Grid.Row="3" Grid.Column="0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+        <ListView x:Name="lvParticipants" Width="300">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox x:Name="ckbParticipant" Content="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnCheckParticipant" Width="30" Click="btnCheckParticipant_Click">
+                <Button.OpacityMask>
+                    <ImageBrush ImageSource="/Resources/icons/app/edit.png"/>
+                </Button.OpacityMask>
+            </Button>
+        </StackPanel>
+        <Label Content="Activity" Grid.Row="4" Grid.Column="0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+            <ComboBox x:Name="cbLocation" DisplayMemberPath="Name" SelectedItem="{Binding Location}"/>
+            <Button x:Name="btnCheckLocation" Width="30" Click="btnCheckLocation_Click">
+                <Button.OpacityMask>
+                    <ImageBrush ImageSource="/Resources/icons/app/edit.png"/>
+                </Button.OpacityMask>
+            </Button>
+        </StackPanel>
+        <Label Content="Responsible" Grid.Row="5" Grid.Column="0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+            <ComboBox x:Name="cbResponsible" DisplayMemberPath="Name" SelectedItem="{Binding Responsible}"/>
+            <Button x:Name="btnCheckResponsible" Width="30" Click="btnCheckResponsible_Click">
+                <Button.OpacityMask>
+                    <ImageBrush ImageSource="/Resources/icons/app/edit.png"/>
+                </Button.OpacityMask>
+            </Button>
+        </StackPanel>
+        <Label Content="Result" Grid.Row="6" Grid.Column="0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
+            <ComboBox x:Name="cbResult" DisplayMemberPath="Name" SelectedItem="{Binding Result}"/>
+            <Button x:Name="btnCheckResult" Width="30" Click="btnCheckResult_Click">
+                <Button.OpacityMask>
+                    <ImageBrush ImageSource="/Resources/icons/app/edit.png"/>
+                </Button.OpacityMask>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="7" Grid.Column="1" Margin="0,0,0,50">
+            <Button x:Name="btnOk" Content="Ok" Click="btnOk_Click"/>
+            <Button x:Name="btnCancel" Content="Cancel" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

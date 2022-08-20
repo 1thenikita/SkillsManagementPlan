@@ -1,0 +1,62 @@
+﻿<Page x:Class="SkillsManagementPlan.Desktop.Pages.PageParticipant"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SkillsManagementPlan.Desktop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="500"
+      Title="Participant Type">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblCaption" Content="Caption" Grid.Row="0" Grid.Column="0"/>
+        <TextBox x:Name="tbCaption" Text="{Binding Name}" Grid.Column="1"/>
+        <Label x:Name="lblAcronym" Content="Acronym" Grid.Row="1" Grid.Column="0"/>
+        <TextBox x:Name="cbAcronym" Text="{Binding Acronym}" Grid.Row="1" Grid.Column="1"/>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+            <Label x:Name="lblIcon" Content="Icon"/>
+            <Image x:Name="imgImage" Width="90" Height="90" Stretch="UniformToFill"></Image>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button x:Name="btnImageLoad" Width="30" Background="#FFDDDDDD" Click="btnImageLoad_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush ImageSource="/Resources/icons/app/open.png"/>
+                    </Button.OpacityMask>
+                </Button>
+                <Button x:Name="btnImageDelete" Width="30" Background="#FFDDDDDD" Click="btnImageDelete_Click">
+                    <Button.OpacityMask>
+                        <ImageBrush ImageSource="/Resources/icons/app/plus.png">
+                            <ImageBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                    <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                    <RotateTransform Angle="45" CenterX="0.5" CenterY="0.5"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </ImageBrush.RelativeTransform>
+                        </ImageBrush>
+                    </Button.OpacityMask>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+            <Label x:Name="lblDescription" Content="Description"/>
+            <TextBox x:Name="tbDescription" Text="{Binding Description}" Width="350" Height="125"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1" Margin="0,0,0,50">
+            <Button x:Name="btnOk" Content="Ok" IsDefault="True" Click="btnOk_Click"/>
+            <Button x:Name="btnCancel" Content="Cancel" IsCancel="True" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A97BEDB8-D3CE-42E1-8AE7-545DB1D675DC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SkillsManagementPlan.Desktop</RootNamespace>
+    <AssemblyName>SkillsManagementPlan.Desktop</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SkillsManagementPlan.Desktop.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SMPlanner.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Classes\Global.cs" />
+    <Compile Include="Pages\PagePlan.xaml.cs">
+      <DependentUpon>PagePlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PagePlans.xaml.cs">
+      <DependentUpon>PagePlans.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageResult.xaml.cs">
+      <DependentUpon>PageResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageResults.xaml.cs">
+      <DependentUpon>PageResults.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ModuleWindow.xaml.cs">
+      <DependentUpon>ModuleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ModuleWindowPartial.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\PageActivities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageParticipant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageParticipants.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PagePlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PagePlans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ModuleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\PageActivities.xaml.cs">
+      <DependentUpon>PageActivities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageActivity.xaml.cs">
+      <DependentUpon>PageActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageParticipant.xaml.cs">
+      <DependentUpon>PageParticipant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageParticipants.xaml.cs">
+      <DependentUpon>PageParticipants.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SkillsManagementPlan.DB\SkillsManagementPlan.DB.csproj">
+      <Project>{6df33a0f-7795-41ba-8c13-a5d5c1de2792}</Project>
+      <Name>SkillsManagementPlan.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SkillsManagementPlan.Modules\SkillsManagementPlan.Modules.csproj">
+      <Project>{293572C5-9FA0-495E-A692-F3CEDC8CD0E5}</Project>
+      <Name>SkillsManagementPlan.Modules</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons\app\add.png" />
+    <Resource Include="Resources\icons\app\calendarview.png" />
+    <Resource Include="Resources\icons\app\close.png" />
+    <Resource Include="Resources\icons\app\copy.png" />
+    <Resource Include="Resources\icons\app\cut.png" />
+    <Resource Include="Resources\icons\app\database.png" />
+    <Resource Include="Resources\icons\app\delete.png" />
+    <Resource Include="Resources\icons\app\down.png" />
+    <Resource Include="Resources\icons\app\edit.png" />
+    <Resource Include="Resources\icons\app\editbox.png" />
+    <Resource Include="Resources\icons\app\exit.png" />
+    <Resource Include="Resources\icons\app\export.png" />
+    <Resource Include="Resources\icons\app\help.png" />
+    <Resource Include="Resources\icons\app\import.png" />
+    <Resource Include="Resources\icons\app\information.png" />
+    <Resource Include="Resources\icons\app\minus.png" />
+    <Resource Include="Resources\icons\app\new.png" />
+    <Resource Include="Resources\icons\app\open.png" />
+    <Resource Include="Resources\icons\app\paste.png" />
+    <Resource Include="Resources\icons\app\plus.png" />
+    <Resource Include="Resources\icons\app\print.png" />
+    <Resource Include="Resources\icons\app\redo.png" />
+    <Resource Include="Resources\icons\app\refresh.png" />
+    <Resource Include="Resources\icons\app\save.png" />
+    <Resource Include="Resources\icons\app\search.png" />
+    <Resource Include="Resources\icons\app\settings.png" />
+    <Resource Include="Resources\icons\app\tableview.png" />
+    <Resource Include="Resources\icons\app\undo.png" />
+    <Resource Include="Resources\icons\app\up.png" />
+    <Resource Include="Resources\icons\app\warning.png" />
+    <Resource Include="Resources\icons\people\folder.people.png" />
+    <Resource Include="Resources\icons\people\home.people.none.png" />
+    <Resource Include="Resources\icons\people\home.people.png" />
+    <Resource Include="Resources\icons\people\people.arrow.left.png" />
+    <Resource Include="Resources\icons\people\people.arrow.right.png" />
+    <Resource Include="Resources\icons\people\people.checkbox.png" />
+    <Resource Include="Resources\icons\people\people.down.png" />
+    <Resource Include="Resources\icons\people\people.left.png" />
+    <Resource Include="Resources\icons\people\people.magnify.png" />
+    <Resource Include="Resources\icons\people\people.multiple.magnify.png" />
+    <Resource Include="Resources\icons\people\people.multiple.png" />
+    <Resource Include="Resources\icons\people\people.png" />
+    <Resource Include="Resources\icons\people\people.profile.png" />
+    <Resource Include="Resources\icons\people\people.right.png" />
+    <Resource Include="Resources\icons\people\people.sensor.png" />
+    <Resource Include="Resources\icons\people\people.sensor.variant.png" />
+    <Resource Include="Resources\icons\people\people.status.png" />
+    <Resource Include="Resources\icons\people\people.up.png" />
+    <Resource Include="Resources\icons\people\reply.people.png" />
+    <Resource Include="Resources\icons\SMPlanner.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons\Logowsr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SMPlanner.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

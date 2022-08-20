@@ -1,0 +1,38 @@
+﻿<Page x:Class="SkillsManagementPlan.Desktop.Pages.PagePlan"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SkillsManagementPlan.Desktop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="500"
+      Title="New SMP">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblChampionshipName" Content="Championship" Grid.Row="0" Grid.Column="0"/>
+        <TextBox x:Name="tbChampionshipName" Text="{Binding ChampionshipName}" Grid.Column="1"/>
+        <Label x:Name="lblCompetence" Content="Competence" Grid.Row="1" Grid.Column="0"/>
+        <TextBox x:Name="cbCompetence" Text="{Binding CompetenceName}" Grid.Row="1" Grid.Column="1"/>
+        <Label x:Name="lblbExpert" Content="Expert" Grid.Row="2" Grid.Column="0"/>
+        <TextBox x:Name="tbExpert" Text="{Binding Expert}" Grid.Row="2" Grid.Column="1"/>
+        <Label x:Name="lblTimezone" Content="Timezone" Grid.Row="3" Grid.Column="0"/>
+        <ComboBox x:Name="cbTimezone" DisplayMemberPath="Abbreviation" SelectedItem="{Binding Timezone}" Grid.Row="3" Grid.Column="1"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1" Margin="0,0,0,50">
+            <Button x:Name="btnOk" Content="Ok" Click="btnOk_Click"/>
+            <Button x:Name="btnCancel" Content="Cancel" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
